@@ -1,0 +1,17 @@
+pipeline {
+    agent {
+        label 'generic'
+    }
+    stages {
+        stage("Install pip") {
+            steps {
+                sh """
+                    yum install -y epel-release
+                    yum install -y python-setuptools
+                    wget https://bootstrap.pypa.io/get-pip.py
+                    python get-pip.py
+                """
+            }
+        }
+    }
+}
